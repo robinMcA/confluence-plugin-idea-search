@@ -119,6 +119,9 @@
     </build>
 
     <properties>
+        <sonar.projectKey>robinMcA_confluence-plugin-idea-search</sonar.projectKey>
+        <sonar.organization>robinmca</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <confluence.version>7.6.2</confluence.version>
         <confluence.data.version>7.6.2</confluence.data.version>
         <amps.version>8.1.0</amps.version>
