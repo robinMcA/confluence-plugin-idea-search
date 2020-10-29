@@ -21,11 +21,15 @@ public class MyPluginComponentImpl implements MyPluginComponent
         this.applicationProperties = applicationProperties;
     }
 
-    public String getNames()
+    public String getName()
     {
         if(null != applicationProperties)
         {
             return "myComponent:" + applicationProperties.getDisplayName();
+        }
+        
+        if(null == applicationProperties) {
+            return "test"
         }
         
         return "myComponent";
