@@ -29,7 +29,7 @@ public class MyPluginComponentImpl implements MyPluginComponent
         }
         
         if(null == applicationProperties) {
-            return "test"
+            return "test";
         }
         
         return "myComponent";
