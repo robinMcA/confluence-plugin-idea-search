@@ -3,6 +3,7 @@ package au.com.agiledigital.idea_search.blueprints;
 import com.atlassian.confluence.plugins.createcontent.api.contextproviders.AbstractBlueprintContextProvider;
 import com.atlassian.confluence.plugins.createcontent.api.contextproviders.BlueprintContext;
 import com.atlassian.confluence.util.velocity.VelocityUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,25 +34,25 @@ public class BlueprintPageContextProvider extends AbstractBlueprintContextProvid
    * @return the rendered value as xhtml
    */
   private String renderValue(KeyProperty property) {
-    if (property.key.startsWith("v")) {
+    if (property.getKey().startsWith("v")) {
       String templatePath = "vm/";
       StringBuilder builder = new StringBuilder(templatePath);
 
-      if (property.options.isDefault) {
+      if (property.getOptions().getIsDefault()) {
         builder.append("PlaceHolder");
       }
 
-      if (property.options.isUser) {
+      if (property.getOptions().getIsUser()) {
         builder.append("User");
 
-        property.value = (property.value.toString()).split(",");
+        property.setValue(  (property.getValue().toString()).split(","));
       }
 
-      if (property.options.isTechnology) {
+      if (property.getOptions().getIsTechnology()) {
         builder.append("Technology");
       }
 
-      if (property.options.isStatus) {
+      if (property.getOptions().getIsStatus()) {
         builder.append("Status");
       }
 
@@ -64,7 +65,7 @@ public class BlueprintPageContextProvider extends AbstractBlueprintContextProvid
       }
     }
 
-    return property.value.toString();
+    return property.getValue().toString();
   }
 
   /**
@@ -120,7 +121,7 @@ public class BlueprintPageContextProvider extends AbstractBlueprintContextProvid
             (key, value) ->
               value == null || (value instanceof String && ((String) value).length() == 0)
                 ? ideaFieldsDefaults.stream()
-                .filter(property -> property.key.equals(key))
+                .filter(property -> property.getKey().equals(key))
                 .findFirst()
                 .orElse(
                   new KeyProperty(
